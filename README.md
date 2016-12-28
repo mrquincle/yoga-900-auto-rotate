@@ -44,6 +44,10 @@ To enable it by start-up:
 
 	systemctl --user enable auto-rotate
 
+And you might need:
+
+	loginctl enable-linger $USER
+
 ## Bugs
 
 ### Upstream

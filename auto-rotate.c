@@ -60,18 +60,19 @@ properties_changed (GDBusProxy *proxy,
 			Rotation rotation, current_rotation;
 			SizeID current_size;
 
-			dpy = XOpenDisplay (NULL); //open current display
+			dpy = XOpenDisplay (NULL); 
 			if (!dpy) { 
 				g_print("Error with XOpenDisplay\n");
+				return;
 			}
 			if (dpy)
 			{
 				screen = DefaultScreen(dpy);
 				root = DefaultRootWindow(dpy); 
 				screen_config = XRRGetScreenInfo(dpy, root);
-				if ( screen_config == NULL )
-				{
+				if ( screen_config == NULL ) {
 					g_print ( "Cannot get screen info\n" ) ;
+					return;
 				}
 			}
 
