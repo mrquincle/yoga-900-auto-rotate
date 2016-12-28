@@ -6,12 +6,8 @@ This code implements auto-rotate functionality on the Yoga 900 by coupling iio-s
 
 Install dependencies, for example:
 
-	sudo apt-get install iio-sensor-proxy libxrandr2 
+	sudo apt-get install iio-sensor-proxy libxrandr2 libglib2.0-dev
 	
-It might be that you need some more (not a virgin system and too lazy to check):
-
-	sudo apt-get install libglib2.0-dev
-
 Just compile and install by running:
 
 	make
@@ -19,35 +15,17 @@ Just compile and install by running:
 
 ## Usage
 
-To run as a daemon:
-
-	./auto-rotate
-
-To see the output (and not run it as a daemon either):
-
-	./auto-rotate --verbose
-
-To use with systemV:
-
-	sudo cp auto-rotate.sh /etc/init.d/
-	# and adjust run-levels
-
 To use with systemd (RECOMMENDED):
 
-	mkdir -p ~/.config/systemd/user
-	cp auto-rotate.service ~/.config/systemd/user/
+	make config-systemd
 
-To test systemd:
+To just give it a test run:
 
-	systemctl --user start auto-rotate
+	make run
 
-To enable it by start-up:
+To use with systemV (not tested and fully implemented):
 
-	systemctl --user enable auto-rotate
-
-And you might need:
-
-	loginctl enable-linger $USER
+	make config-systemv
 
 ## Bugs
 
