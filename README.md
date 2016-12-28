@@ -12,9 +12,10 @@ It might be that you need some more (not a virgin system and too lazy to check):
 
 	sudo apt-get install libglib2.0-dev
 
-Just compile by running:
+Just compile and install by running:
 
 	make
+	sudo make install
 
 ## Usage
 
