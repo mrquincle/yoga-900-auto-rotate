@@ -4,7 +4,7 @@ This code implements auto-rotate functionality on the Yoga 900 by coupling iio-s
 
 ## Configuration
 
-Install dependencies, for example (personally I've installed iio-sensor-proxy from source, see below):
+Install dependencies, for example:
 
 	sudo apt-get install iio-sensor-proxy libxrandr2 
 	
@@ -48,7 +48,7 @@ To enable it by start-up:
 
 ### Upstream
 
-There might be mismatches between iio-sensor-proxy and the kernel. I have installed `iio-sensor-proxy` from source:
+There might be mismatches between iio-sensor-proxy and the kernel. I have also experimented with running `iio-sensor-proxy` from source:
 
 	git clone https://github.com/hadess/iio-sensor-proxy
 
@@ -57,11 +57,13 @@ There might be mismatches between iio-sensor-proxy and the kernel. I have instal
 	./autogen.sh 
 	./configure --prefix=/usr --sysconfdir=/etc
 	make "CFLAGS=-Wno-unused-result"
-	sudo make install
+	sudo make install # sudo checkinstall (my preference)
 
 And run the following as root:
 
 	G_MESSAGES_DEBUG=all /usr/sbin/iio-sensor-proxy
+
+The system package was actually sufficient in my case (1.3-1ubuntu1).
 
 ### Initiation
 
