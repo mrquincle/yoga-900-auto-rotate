@@ -1,0 +1,9 @@
+[Unit]
+Description=Auto-rotate Yoga Screen
+
+[Service]
+Type=forking
+ExecStart=/usr/local/bin/auto-rotate
+
+[Install]
+WantedBy=multi-user.target
