@@ -75,7 +75,7 @@ Somehow at my system it only starts working after closing and opening the lid on
 
 ## Copyrights
 
-This is created after `monitor-sensor.c` as example at [https://github.com/hadess/iio-sensor-proxy](iio-sensor-proxy). 
+This is created after `monitor-sensor.c` as example at <https://github.com/hadess/iio-sensor-proxy>. 
 
 Copyrights of the **changes** w.r.t. the original:
 
