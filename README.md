@@ -52,6 +52,22 @@ The system package was actually sufficient in my case (1.3-1ubuntu1).
 
 Somehow at my system it only starts working after closing and opening the lid once.
 
+## Tests
+
+Regarding battery use, the auto-rotate daemon is compared to a script (see `/scripts`) that use dbus-monitor in a (blocking) read loop.
+
+Results:
+
+
+| description         | auto-rotate   | dbus-monitor  |
+| ------------------- | ------------- | ------------- |
+| system calls        | 199           | 39284         | 
+| system calls (read) | 6             | 27276    | 
+| cpu (sys)           | 0.01%         | 0.20%         | 
+| cpu (user)          | 0.00%         | 0.04%         | 
+| context switches    | 3.52/sec      | 666.13/sec    | 
+
+
 ## Copyrights
 
 This is created after `monitor-sensor.c` as example at <https://github.com/hadess/iio-sensor-proxy>. 

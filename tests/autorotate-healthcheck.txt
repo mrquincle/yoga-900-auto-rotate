@@ -1,0 +1,113 @@
+sudo health-check -f -p auto-rotate -d 120
+CPU usage (in terms of 1 CPU):
+  PID  Process                USR%   SYS% TOTAL%   Duration
+   908 auto-rotate            0.00   0.01   0.01     120.01  (very light load)
+
+Page Faults:
+  PID  Process                 Minor/sec    Major/sec    Total/sec
+   908 auto-rotate                  0.20         0.00         0.20
+
+Wakeups:
+ No wakeups detected.
+
+Context Switches:
+  PID  Process                Voluntary   Involuntary     Total
+                             Ctxt Sw/Sec  Ctxt Sw/Sec  Ctxt Sw/Sec
+   908 auto-rotate                  3.25         0.00         3.25 (low)
+   911 auto-rotate                  0.25         0.02         0.27 (very low)
+   909 auto-rotate                  0.00         0.00         0.00 (idle)
+ Total                              3.50         0.02         3.52
+
+File I/O operations:
+  PID  Process               Count  Op  Filename
+   908 auto-rotate               2    C /home/anne/.Xauthority
+   908 auto-rotate               2    R /home/anne/.Xauthority
+   908 auto-rotate               2    O /home/anne/.Xauthority
+ Total                           6
+ Op: O=Open, R=Read, W=Write, C=Close
+
+File I/O Operations per second:
+  PID  Process                 Open   Close    Read   Write
+   908 auto-rotate             0.02    0.02    0.02    0.00
+
+System calls traced:
+  PID  Process              Syscall               Count    Rate/Sec    Total μSecs  % Call Time
+   908 auto-rotate          recvmsg                  64       0.5333          1966      0.0071
+   908 auto-rotate          poll                     52       0.4333       4767220     17.2737
+   908 auto-rotate          writev                   24       0.2000           709      0.0026
+   908 auto-rotate          write                     6       0.0500           188      0.0007
+   908 auto-rotate          read                      6       0.0500            88      0.0003
+   908 auto-rotate          recvfrom                  6       0.0500           121      0.0004
+   908 auto-rotate          fcntl                     6       0.0500            26      0.0001
+   908 auto-rotate          access                    2       0.0167            31      0.0001
+   908 auto-rotate          close                     2       0.0167            14      0.0001
+   908 auto-rotate          open                      2       0.0167            21      0.0001
+   908 auto-rotate          fstat                     2       0.0167            11      0.0000
+   908 auto-rotate          getsockname               2       0.0167            11      0.0000
+   908 auto-rotate          getpeername               2       0.0167            22      0.0001
+   908 auto-rotate          uname                     2       0.0167            13      0.0000
+   908 auto-rotate          connect                   2       0.0167            76      0.0003
+   908 auto-rotate          socket                    2       0.0167            85      0.0003
+   908 auto-rotate          restart_syscall           1       0.0083      10013165     36.2821
+   909 auto-rotate          restart_syscall           1       0.0083             0      0.0000
+   911 auto-rotate          poll                      8       0.0667       2802475     10.1546
+   911 auto-rotate          recvmsg                   4       0.0333           182      0.0007
+   911 auto-rotate          write                     2       0.0167            85      0.0003
+   911 auto-rotate          restart_syscall           1       0.0083      10011576     36.2763
+ Total                                              199       1.6583      27598085
+
+Top polling system calls:
+  PID  Process              Syscall             Rate/Sec   Infinite   Zero     Minimum    Maximum    Average
+                                                           Timeouts Timeouts   Timeout    Timeout    Timeout
+   908 auto-rotate          poll                    0.4333       52        0   0.0 sec    0.0 sec    0.0 sec 
+   911 auto-rotate          poll                    0.0667        2        6   0.0 sec    0.0 sec    0.0 sec 
+ Total                                              0.5000       54        6
+
+Distribution of poll timeout times:
+                                                            10.0  100.0    1.0   10.0  100.0    1.0   10.0  100.0
+                                                    up to    to     to     to     to     to     to     to  or more
+                                              Zero    9.9   99.9  999.9    9.9   99.9  999.9    9.9   99.9        Infinite
+  PID  Process              Syscall            sec   usec   usec   usec   msec   msec   msec    sec    sec    sec   Wait
+   908 auto-rotate          poll                 0     -      -      -      -      -      -      -      -      -      52
+   911 auto-rotate          poll                 6     -      -      -      -      -      -      -      -      -       2
+
+Polling system call analysis:
+ auto-rotate (911), poll:
+          4 immediate timed out calls with zero timeout (non-blocking peeks)
+          2 repeated immediate timed out polled calls with zero timeouts (heavy polling peeks)
+
+Filesystem Syncs:
+ None.
+
+Inotify watches added:
+ None.
+
+Memory:
+Per Process Memory (K):
+  PID  Process              Type        Size       RSS       PSS
+   908 auto-rotate          Stack        136        12        12
+   908 auto-rotate          Heap      222576      1432      1432
+   908 auto-rotate          Mapped     55328      5396       334
+
+Change in memory (K/second):
+  PID  Process              Type        Size       RSS       PSS
+   908 auto-rotate          Heap        0.00      0.80      0.80 (growing)
+
+Heap Change via brk():
+ None.
+
+Memory Change via mmap() and munmap():
+ None.
+
+Open Network Connections:
+  PID  Process              Proto         Send   Receive  Address
+   908 auto-rotate          UNIX        0.00 B    2.49 K  /run/user/1000/bus
+   908 auto-rotate          UNIX        0.00 B    2.49 K  /run/systemd/journal/stdout
+   911 auto-rotate          UNIX        0.00 B  464.00 B  /run/user/1000/bus
+   908 auto-rotate          UNIX        0.00 B    0.00 B  @/tmp/ibus/dbus-Pq4P8ipQ
+   908 auto-rotate          UNIX        0.00 B    0.00 B  @/tmp/.ICE-unix/1980
+   908 auto-rotate          UNIX        0.00 B    0.00 B  @/tmp/.X11-unix/X0
+   908 auto-rotate          UNIX        0.00 B    0.00 B  /var/run/dbus/system_bus_socket
+   908 auto-rotate          UNIX        0.00 B    0.00 B  /run/user/1000/pulse/native
+ Total                                  0.00 B    5.43 K
+

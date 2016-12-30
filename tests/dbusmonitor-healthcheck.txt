@@ -1,0 +1,96 @@
+sudo health-check -f -p 28674,28676,28675 -d 120
+CPU usage (in terms of 1 CPU):
+  PID  Process                USR%   SYS% TOTAL%   Duration
+ 28676 bash                   0.04   0.20   0.24     120.01  (very light load)
+ 28675 dbus-monitor           0.00   0.00   0.00     120.01  (idle)
+ 28674 bash                   0.00   0.00   0.00     120.01  (idle)
+ Total                        0.04   0.20   0.24             (very light load)
+
+Page Faults:
+  PID  Process                 Minor/sec    Major/sec    Total/sec
+ 28676 bash                       138.11         0.00       138.11
+ 28675 dbus-monitor                 0.00         0.00         0.00
+ 28674 bash                         0.00         0.00         0.00
+
+Wakeups:
+ No wakeups detected.
+
+Context Switches:
+  PID  Process                Voluntary   Involuntary     Total
+                             Ctxt Sw/Sec  Ctxt Sw/Sec  Ctxt Sw/Sec
+ 28676 bash                       653.60         0.10       653.70 (quite high)
+ 28675 dbus-monitor                12.43         0.00        12.43 (moderate)
+ 28674 bash                         0.00         0.00         0.00 (idle)
+ Total                            666.03         0.10       666.13
+
+File I/O operations:
+ No file I/O operations detected.
+
+System calls traced:
+  PID  Process              Syscall               Count    Rate/Sec    Total μSecs  % Call Time
+ 28674 bash                 wait4                     1       0.0083             0      0.0000
+ 28675 dbus-monitor         write                   661       5.5082         12199      0.0052
+ 28675 dbus-monitor         recvmsg                  51       0.4250          1639      0.0007
+ 28675 dbus-monitor         poll                     25       0.2083     116144907     49.4396
+ 28675 dbus-monitor         restart_syscall           1       0.0083       1065622      0.4536
+ 28676 bash                 read                  27276     227.2959     117607755     50.0623
+ 28676 bash                 rt_sigprocmask         4641      38.6743         22775      0.0097
+ 28676 bash                 rt_sigaction           1989      16.5747          9812      0.0042
+ 28676 bash                 close                  1326      11.0498          8947      0.0038
+ 28676 bash                 pipe                    663       5.5249          5281      0.0022
+ 28676 bash                 clone                   663       5.5249         31994      0.0136
+ 28676 bash                 wait4                   663       5.5249          5083      0.0022
+ 28676 bash                 ioctl                   661       5.5082          3478      0.0015
+ 28676 bash                 lseek                   661       5.5082          3204      0.0014
+ 28676 bash                 write                     2       0.0167            25      0.0000
+ Total                                            39284     327.3608     234922721
+
+Top polling system calls:
+  PID  Process              Syscall             Rate/Sec   Infinite   Zero     Minimum    Maximum    Average
+                                                           Timeouts Timeouts   Timeout    Timeout    Timeout
+ 28675 dbus-monitor         poll                    0.2083       25        0   0.0 sec    0.0 sec    0.0 sec 
+
+Distribution of poll timeout times:
+                                                            10.0  100.0    1.0   10.0  100.0    1.0   10.0  100.0
+                                                    up to    to     to     to     to     to     to     to  or more
+                                              Zero    9.9   99.9  999.9    9.9   99.9  999.9    9.9   99.9        Infinite
+  PID  Process              Syscall            sec   usec   usec   usec   msec   msec   msec    sec    sec    sec   Wait
+ 28675 dbus-monitor         poll                 0     -      -      -      -      -      -      -      -      -      25
+
+Polling system call analysis:
+ No bad polling discovered.
+
+Filesystem Syncs:
+ None.
+
+Inotify watches added:
+ None.
+
+Memory:
+Per Process Memory (K):
+  PID  Process              Type        Size       RSS       PSS
+ 28675 dbus-monitor         Stack        140        20        20
+ 28675 dbus-monitor         Heap         220        92        92
+ 28675 dbus-monitor         Mapped     25388      2440       192
+ 28674 bash                 Stack        140        20        14
+ 28674 bash                 Heap         148       140       112
+ 28674 bash                 Mapped     12272      2792       497
+ 28676 bash                 Stack        140        24        18
+ 28676 bash                 Heap         152       148       120
+ 28676 bash                 Mapped     12272      2292       489
+
+Change in memory (K/second):
+ No changes found.
+
+Heap Change via brk():
+ None.
+
+Memory Change via mmap() and munmap():
+ None.
+
+Open Network Connections:
+  PID  Process              Proto         Send   Receive  Address
+ 28675 dbus-monitor         UNIX        0.00 B   16.40 K  /var/run/dbus/system_bus_socket
+ Total                                  0.00 B   16.40 K
+
+
