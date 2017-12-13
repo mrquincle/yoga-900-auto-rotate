@@ -89,5 +89,5 @@ Hence, complete code falls under LGPLv3.
 
 ## Acceptance mainstream
 
-It is reported as tip at https://github.com/hadess/iio-sensor-proxy/issues/129. The author of iio-sensor-proxy assumes an desktop developer should be the person to integrate it. This is based on X, but I have no clue where I would need to be to get this everybody's default experience using Linux on a Yoga 900.
+It is reported as tip at https://github.com/hadess/iio-sensor-proxy/issues/129. The author of iio-sensor-proxy assumes a desktop developer should be the person to integrate it. The code in this repository directly uses X through xrandx, so can be used by many desktops as long as they use X. However, I have no clue who I should contact to get a working auto-rotate function the default experience for everyone using Linux on a Yoga 900. Help to get it in into any OS appreciated!
 
