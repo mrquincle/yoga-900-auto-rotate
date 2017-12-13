@@ -29,4 +29,7 @@ run: build
 	echo "Make sure you have closed the lid or suspended first: systemctl suspend"
 	./auto-rotate --verbose
 
+clean:
+	rm auto-rotate
+
 .PHONY: all install config-systemd config-systemv 

@@ -2,6 +2,10 @@
 
 This code implements auto-rotate functionality on the Yoga 900 by coupling iio-sensor-proxy to xrandr.
 
+## State
+
+Still works perfectly. Last compiled and tested: Dec. 2017.
+
 ## Configuration
 
 Install dependencies, for example:
