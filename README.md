@@ -74,7 +74,7 @@ Results:
 
 ## Copyrights
 
-This is created after `monitor-sensor.c` as example at <https://github.com/hadess/iio-sensor-proxy>. 
+This is created after `monitor-sensor.c` as example at <https://github.com/hadess/iio-sensor-proxy>.
 
 Copyrights of the **changes** w.r.t. the original:
 
@@ -86,3 +86,8 @@ Copyrights of the **changes** w.r.t. the original:
 For the copyrights on the original, see code. Summarized: 2015 Bastien Nocera, LGPLv3.
 
 Hence, complete code falls under LGPLv3.
+
+## Acceptance mainstream
+
+It is reported as tip at https://github.com/hadess/iio-sensor-proxy/issues/129. The author of iio-sensor-proxy assumes an desktop developer should be the person to integrate it. This is based on X, but I have no clue where I would need to be to get this everybody's default experience using Linux on a Yoga 900.
+
