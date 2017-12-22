@@ -7,7 +7,7 @@ build: auto-rotate
 src = auto-rotate.c
 
 auto-rotate: $(src)
-	gcc $(src) `pkg-config --cflags --libs glib-2.0 gio-2.0 xrandr x11` -o $@
+	gcc $(src) `pkg-config --cflags --libs glib-2.0 gio-2.0 xrandr x11 xi` -o $@
 
 install: build
 	cp auto-rotate /usr/local/bin

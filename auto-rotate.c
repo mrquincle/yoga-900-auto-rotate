@@ -6,12 +6,17 @@
  * the Free Software Foundation.
  *
  * Adjusted for auto-rotate functionality on Yoga 900 by Anne van Rossum.
+ *
+ * Subsequently adjusted using https://github.com/fourdollars/x11-touchscreen-calibrator (GPLv3) to rotate
+ * any touch device.
  */
 
 #include <gio/gio.h>
 
 #include <X11/Xlib.h>
 #include <X11/extensions/Xrandr.h>
+
+#include <X11/extensions/XInput2.h>
 
 static GMainLoop *loop;
 static guint watch_id;
@@ -127,6 +132,97 @@ properties_changed (GDBusProxy *proxy,
 
 					
 			XRRSetScreenConfig(dpy, screen_config, root, current_size, new_rotation, CurrentTime);
+
+			// rotate also input devices with XITouchClass and XIDirectTouch mode
+			float rotate0[9] = {
+				1.0f, 0   , 0,
+				0   , 1.0f, 0,
+				0   , 0   , 1.0f
+			};
+			float rotate90[] = {
+				0   , -1.0f, 1.0f,
+				1.0f, 0    , 0,
+				0   , 0    , 1.0f
+			};
+			float rotate180[] = {
+				-1.0f, 0    , 1.0f,
+				0    , -1.0f, 1.0f,
+				0    , 0    , 1.0f
+			};
+			float rotate270[] = {
+				0    , 1.0f, 0,
+				-1.0f, 0   , 1.0f,
+				0    , 0   , 1.0f
+			};
+
+			union {
+				unsigned char* _char;
+				float *_float;
+			} coordinates;
+			g_print("Set touch coordinates to 180 degrees rotated for now (size = %i)\n", (int)sizeof(coordinates._char));
+
+			Atom prop_float;
+			Atom prop_matrix;
+			Atom type_return;
+	
+			XIDeviceInfo *info = NULL;
+			XIDeviceInfo *device = NULL;
+			XITouchClassInfo *touch = NULL;
+			int num_devices, i, j, device_id, ret, format_return;
+			unsigned long nitems, bytes_after;
+			if (dpy) {
+				prop_float = XInternAtom(dpy, "FLOAT", False);
+				if (prop_float == None) {
+					g_print("ERROR : Float atom not found..\n");
+					return;
+				}
+				prop_matrix = XInternAtom(dpy, "Coordinate Transformation Matrix", False);
+				if (prop_matrix == None) {
+					g_print("ERROR : Coordinate Transformation Matrix property not found.\n");
+					return;
+				}
+				info = XIQueryDevice(dpy, XIAllDevices, &num_devices);
+				for (i = 0; i < num_devices; ++i) {
+					device = info + i;
+					for (j = 0; j < device->num_classes; ++j) {
+						touch = (XITouchClassInfo*) device->classes[j];
+						if (touch->type == XITouchClass || touch->type == XIValuatorClass) {
+							device_id = device->deviceid;
+
+							ret = XIGetProperty(dpy, device_id, prop_matrix, 0, 9, False, prop_float,
+									&type_return, &format_return, &nitems, &bytes_after, &coordinates._char);
+							if (ret != Success || prop_float != type_return || format_return != 32 ||
+									nitems != 9 || bytes_after != 0)
+							{
+								g_print("ERROR : Failed to return property values.\n");
+								return;
+							}
+
+							switch (new_rotation)
+							{
+								case RR_Rotate_0:
+									coordinates._float = rotate0;
+									break;
+								case RR_Rotate_90:
+									coordinates._float = rotate90;
+									break;
+								case RR_Rotate_180:
+									coordinates._float = rotate180;
+									break;
+								case RR_Rotate_270:
+									coordinates._float = rotate270;
+									break;
+								default:
+									g_print("Error with value of new_rotation\n");
+							}
+							
+							XIChangeProperty(dpy, device_id, prop_matrix, prop_float, format_return, 
+									PropModeReplace, coordinates._char, nitems);
+						}
+					}
+				}
+				XIFreeDeviceInfo(info);
+			}
 		}
 						
 		g_print ("    Accelerometer orientation changed: %s\n", g_variant_get_string (v, NULL));
