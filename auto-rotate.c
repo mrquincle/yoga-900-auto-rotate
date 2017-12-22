@@ -129,7 +129,6 @@ properties_changed (GDBusProxy *proxy,
 				default:
 					g_print("Error with value of new_rotation\n");
 			}
-
 					
 			XRRSetScreenConfig(dpy, screen_config, root, current_size, new_rotation, CurrentTime);
 
@@ -159,7 +158,6 @@ properties_changed (GDBusProxy *proxy,
 				unsigned char* _char;
 				float *_float;
 			} coordinates;
-			g_print("Set touch coordinates to 180 degrees rotated for now (size = %i)\n", (int)sizeof(coordinates._char));
 
 			Atom prop_float;
 			Atom prop_matrix;
@@ -186,7 +184,8 @@ properties_changed (GDBusProxy *proxy,
 					device = info + i;
 					for (j = 0; j < device->num_classes; ++j) {
 						touch = (XITouchClassInfo*) device->classes[j];
-						if (touch->type == XITouchClass || touch->type == XIValuatorClass) {
+						if (touch->type == XITouchClass || touch->type == XIValuatorClass || 
+								touch->type == XIScrollClass) {
 							device_id = device->deviceid;
 
 							ret = XIGetProperty(dpy, device_id, prop_matrix, 0, 9, False, prop_float,
