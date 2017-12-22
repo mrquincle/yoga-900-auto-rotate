@@ -74,18 +74,11 @@ Results:
 
 ## Copyrights
 
-This is created after `monitor-sensor.c` as example at <https://github.com/hadess/iio-sensor-proxy>.
+This code is created using the example code by Bastien Nocera from the monitor-sensor.c example at <https://github.com/hadess/iio-sensor-proxy>. 
+It is adjusted for auto-rotate functionality on Yoga 900 by Anne van Rossum.
+It is subsequently adjusted on request to rotate any touch device by Anne van Rossum using code from Shih-Yuan Lee at <https://github.com/fourdollars/x11-touchscreen-calibrator>.
 
-Copyrights of the **changes** w.r.t. the original:
-
-* Author: Anne van Rossum
-* Company: none
-* Date: 28 Dec, 2016
-* License (free to pick): LGPLv3, MIT, Apache 2.0
-
-For the copyrights on the original, see code. Summarized: 2015 Bastien Nocera, LGPLv3.
-
-Hence, complete code falls under LGPLv3.
+Copyright licence: GPLv3.
 
 ## Acceptance mainstream
 

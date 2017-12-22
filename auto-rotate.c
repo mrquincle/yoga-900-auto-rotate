@@ -1,14 +1,17 @@
 /*
+ * Copyright (c) 2017 Anne van Rossum <https://annevanrossum.com>
+ * Copyright (C) 2013 Shih-Yuan Lee (FourDollars) <sylee@canonical.com>
  * Copyright (c) 2015 Bastien Nocera <hadess@hadess.net>
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License version 3 as published by
  * the Free Software Foundation.
  *
- * Adjusted for auto-rotate functionality on Yoga 900 by Anne van Rossum.
- *
- * Subsequently adjusted using https://github.com/fourdollars/x11-touchscreen-calibrator (GPLv3) to rotate
- * any touch device.
+ * Original code is by Bastien Nocera from the monitor-sensor.c example at 
+ * <https://github.com/hadess/iio-sensor-proxy>. 
+ * It is adjusted for auto-rotate functionality on Yoga 900 by Anne van Rossum.
+ * It is subsequently adjusted on request to rotate any touch device by Anne van Rossum
+ * using code from Shih-Yuan Lee at <https://github.com/fourdollars/x11-touchscreen-calibrator>
  */
 
 #include <gio/gio.h>
