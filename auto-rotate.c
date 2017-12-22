@@ -153,6 +153,16 @@ properties_changed (GDBusProxy *proxy,
 				-1.0f, 0   , 1.0f,
 				0    , 0   , 1.0f
 			};
+			float reflectX[] = {
+				-1.0f, 0   , 1.0f,
+				0    , 1.0f, 0,
+				0    , 0   , 1.0f
+			};
+			float reflectY[] = {
+				1.0f, 0    , 0,
+				0   , -1.0f, 1.0f,
+				0   , 0    , 1.0f
+			};
 
 			union {
 				unsigned char* _char;
@@ -206,7 +216,8 @@ properties_changed (GDBusProxy *proxy,
 									coordinates._float = rotate90;
 									break;
 								case RR_Rotate_180:
-									coordinates._float = rotate180;
+//									coordinates._float = rotate180;
+									coordinates._float = reflectX;
 									break;
 								case RR_Rotate_270:
 									coordinates._float = rotate270;
