@@ -219,8 +219,8 @@ properties_changed (GDBusProxy *proxy,
 									coordinates._float = rotate90;
 									break;
 								case RR_Rotate_180:
-//									coordinates._float = rotate180;
-									coordinates._float = reflectX;
+									coordinates._float = rotate180;
+//									coordinates._float = reflectX;
 									break;
 								case RR_Rotate_270:
 									coordinates._float = rotate270;
